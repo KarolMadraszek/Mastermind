@@ -6,6 +6,21 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class MainMenu {
+
+    private final InputReader reader;
+    private final PrintStream out;
+
+    enum Color {
+        RED,
+        YELLOW,
+        GREEN
+    }
+
+    static String red = "\033[0;31m";
+    static String yellow = "\033[1;33m";
+    static String green = "\033[0;32m";
+    static String nc = "\033[0m";
+
     public static String generateSecretCode() {
         Random random = new Random();
         String result = "";
@@ -21,26 +36,25 @@ public class MainMenu {
         return result;
     }
 
-    enum Color {
-        RED,
-        YELLOW,
-        GREEN
+
+    public MainMenu(InputReader reader, PrintStream out) {
+        this.reader = reader != null ? reader : new ConsoleInputReader();
+        this.out = out != null ? out : System.out;
     }
 
-    static String red = "\033[0;31m";
-    static String yellow = "\033[1;33m";
-    static String green = "\033[0;32m";
-    static String nc = "\033[0m";
+    public MainMenu(){
+        this(null, null);
+    }
 
 
-    public static void main(String[] args) {
+    public void start() {
         //System.setOut(printStream);
         Scanner scanner = new Scanner(System.in);
         String kod = generateSecretCode();
         String proba = "";
         Color[] color = new Color[4];
         int ilosc_prob = 10;
-        System.out.println("Result: " + kod);
+        out.println("Result: " + kod);
         while (ilosc_prob > 0) {
             if (!Objects.equals(proba, kod)) {
                 //System.out.println("I " + red + "like" + nc + "StackOverflow");

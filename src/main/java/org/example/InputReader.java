@@ -1,4 +1,4 @@
-package junit4;
+package org.example;
 
 public interface InputReader {
     String readLine();

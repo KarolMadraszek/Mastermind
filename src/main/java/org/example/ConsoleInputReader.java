@@ -1,8 +1,8 @@
-package junit4;
+package org.example;
 
 import java.util.Scanner;
 
-public class ConsoleInputReader implements InputReader{
+public class ConsoleInputReader implements InputReader {
     private Scanner scanner =new Scanner(System.in);
 
     public String readLine() {
